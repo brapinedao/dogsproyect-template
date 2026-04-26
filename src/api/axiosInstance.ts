@@ -1,5 +1,6 @@
 import axios, { type AxiosError, type InternalAxiosRequestConfig } from 'axios'
 import { API_URLS } from '@/constants/apis'
+import { useAuthStore } from '@/modules/auth/store/useAuthStore'
 
 const axiosInstance = axios.create({
   baseURL: API_URLS.BASE,
@@ -27,7 +28,8 @@ axiosInstance.interceptors.response.use(
     const status = error.response?.status
 
     if (status === 401) {
-      localStorage.removeItem('token')
+      const authStore = useAuthStore()
+      authStore._logout()
       window.location.href = '/login'
     }
 

@@ -13,21 +13,50 @@ const router = createRouter({
       component: () => import('@/modules/auth/views/Login.vue'),
     },
     {
-      path: '/pets',
-      name: 'pets-list',
-      component: () => import('@/modules/pets/views/PetsList.vue'),
+      path: '/',
+      component: () => import('@/layouts/MainLayout.vue'),
       meta: { requiresAuth: true },
+      children: [
+        {
+          path: 'pets',
+          name: 'pets-list',
+          component: () => import('@/modules/pets/views/list/PetsList.vue'),
+        },
+        {
+          path: 'pets/new',
+          name: 'pets-create',
+          component: () => import('@/modules/pets/views/create/PetForm.vue'),
+        },
+        {
+          path: 'pets/:id/view',
+          name: 'pets-detail',
+          component: () => import('@/modules/pets/views/detail/PetDetail.vue'),
+        },
+        {
+          path: 'pets/:id/edit',
+          name: 'pets-edit',
+          component: () => import('@/modules/pets/views/edit/PetEdit.vue'),
+        },
+        {
+          path: 'services',
+          name: 'services-list',
+          component: () => import('@/modules/services/views/ServicesList.vue'),
+        },
+        {
+          path: 'appointments',
+          name: 'appointments-list',
+          component: () => import('@/modules/appointments/views/AppointmentsList.vue'),
+        },
+      ],
     },
   ],
 })
 
 // Navigation guard
-router.beforeEach((to, _from, next) => {
+router.beforeEach((to) => {
   const token = localStorage.getItem('token')
   if (to.meta.requiresAuth && !token) {
-    next({ name: 'login' })
-  } else {
-    next()
+    return { name: 'login' }
   }
 })
 

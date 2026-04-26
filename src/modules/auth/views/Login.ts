@@ -1,9 +1,8 @@
 import { ref } from 'vue'
-import { useRouter } from 'vue-router'
+import router from '@/router'
 import { useAuthStore } from '@/modules/auth/store/useAuthStore'
 
 function useLogin() {
-  const router = useRouter()
   const authStore = useAuthStore()
 
   const email = ref('')
