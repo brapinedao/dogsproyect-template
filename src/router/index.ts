@@ -5,7 +5,7 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      redirect: '/login',
+      redirect: '/dashboard',
     },
     {
       path: '/login',
@@ -17,6 +17,11 @@ const router = createRouter({
       component: () => import('@/layouts/MainLayout.vue'),
       meta: { requiresAuth: true },
       children: [
+        {
+          path: 'dashboard',
+          name: 'dashboard',
+          component: () => import('@/modules/dashboard/views/Dashboard.vue'),
+        },
         {
           path: 'medical-records',
           name: 'medical-records-list',
