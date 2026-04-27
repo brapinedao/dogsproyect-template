@@ -18,6 +18,11 @@ const router = createRouter({
       meta: { requiresAuth: true },
       children: [
         {
+          path: 'medical-records',
+          name: 'medical-records-list',
+          component: () => import('@/modules/medical-records/views/MedicalRecordsList.vue'),
+        },
+        {
           path: 'pets',
           name: 'pets-list',
           component: () => import('@/modules/pets/views/list/PetsList.vue'),
@@ -43,9 +48,19 @@ const router = createRouter({
           component: () => import('@/modules/services/views/ServicesList.vue'),
         },
         {
+          path: 'services/new',
+          name: 'services-create',
+          component: () => import('@/modules/services/views/create/ServiceForm.vue'),
+        },
+        {
           path: 'appointments',
           name: 'appointments-list',
           component: () => import('@/modules/appointments/views/AppointmentsList.vue'),
+        },
+        {
+          path: 'medical-records/:petId',
+          name: 'medical-record-detail',
+          component: () => import('@/modules/medical-records/views/MedicalRecordDetail.vue'),
         },
       ],
     },

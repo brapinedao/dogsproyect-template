@@ -1,3 +1,4 @@
+import { useRouter } from 'vue-router'
 import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
 import { useAppointmentsStore } from '@/modules/appointments/store/useAppointmentsStore'
 import type { Appointment } from '@/modules/appointments/store/useAppointmentsStore'
@@ -37,6 +38,10 @@ export function formatDateTime(iso: string): string {
 }
 
 function useAppointmentsList() {
+  const router = useRouter()
+  function goToMedicalRecord(petId: number, appointmentId: number) {
+    router.push({ path: `/medical-records/${petId}`, query: { appointmentId } })
+  }
   const appointmentsStore = useAppointmentsStore()
   const petsStore = usePetsStore()
   const servicesStore = useServicesStore()
@@ -257,6 +262,7 @@ function useAppointmentsList() {
     completedNotice,
     handleCancelAppointment,
     handleComplete,
+    goToMedicalRecord,
   }
 }
 

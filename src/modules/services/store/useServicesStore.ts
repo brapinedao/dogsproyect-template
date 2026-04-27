@@ -11,6 +11,13 @@ export interface Service {
   durationInMinutes: number
 }
 
+export interface ServiceCreatePayload {
+  name: string
+  category: number
+  cost: number
+  durationInMinutes: number
+}
+
 export const useServicesStore = defineStore('services', () => {
   const services = ref<Service[]>([])
 
@@ -24,9 +31,18 @@ export const useServicesStore = defineStore('services', () => {
     }
   }
 
+  async function _createService(payload: ServiceCreatePayload): Promise<boolean> {
+    try {
+      await axiosInstance.post(API_URLS.SERVICES.CREATE, payload)
+      return true
+    } catch {
+      return false
+    }
+  }
+
   function _resetKeys(): void {
     services.value = []
   }
 
-  return { services, _getServices, _resetKeys }
+  return { services, _getServices, _createService, _resetKeys }
 })

@@ -23,6 +23,7 @@ const {
   pagedRows,
   categoryColor,
   changeRowsPerPage,
+  goToCreate,
 } = useServicesList()
 </script>
 
@@ -40,6 +41,7 @@ const {
         label="Nuevo servicio"
         size="sm"
         style="border-radius: 8px"
+        @click="goToCreate"
       />
     </div>
 

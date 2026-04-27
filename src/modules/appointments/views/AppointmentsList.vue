@@ -51,6 +51,7 @@ const {
   completedNotice,
   handleCancelAppointment,
   handleComplete,
+  goToMedicalRecord,
 } = useAppointmentsList()
 
 const statusOptions = [
@@ -184,7 +185,14 @@ const statusOptions = [
               </q-btn>
 
               <!-- Medical record: only if Completed -->
-              <q-btn v-if="props.row.status === 'Completed'" flat dense round size="sm">
+              <q-btn
+                v-if="props.row.status === 'Completed'"
+                flat
+                dense
+                round
+                size="sm"
+                @click="goToMedicalRecord(props.row.petId ?? props.row.id, props.row.id)"
+              >
                 <FilePlus :size="15" class="text-blue-6" />
                 <q-tooltip>Crear historia clínica</q-tooltip>
               </q-btn>

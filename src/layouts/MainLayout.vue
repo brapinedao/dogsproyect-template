@@ -44,7 +44,7 @@ const menuItems: MenuItem[] = [
       { label: 'Funeraria', to: '/services?category=Funeral' },
     ],
   },
-  { label: 'Historias Clínicas', icon: markRaw(ClipboardList), to: '/clinical' },
+  { label: 'Historias Clínicas', icon: markRaw(ClipboardList), to: '/medical-records' },
 ]
 
 const expandedItems = ref<string[]>([])

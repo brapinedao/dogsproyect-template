@@ -18,6 +18,8 @@ export const API_URLS = {
 
   SERVICES: {
     BASE: `${BASE_URL}/services`,
+    CREATE: `${BASE_URL}/services`,
+    BY_ID: (id: number) => `${BASE_URL}/services/${id}`,
   },
 
   APPOINTMENTS: {
@@ -27,5 +29,10 @@ export const API_URLS = {
     UPDATE: (id: number) => `${BASE_URL}/appointments/${id}`,
     PATCH_STATUS: (id: number) => `${BASE_URL}/appointments/${id}/status`,
     DELETE: (id: number) => `${BASE_URL}/appointments/${id}`,
+  },
+
+  MEDICAL_RECORDS: {
+    BY_PET: `${BASE_URL}/medicalrecords/pet`,
+    CREATE: `${BASE_URL}/medicalrecords`,
   },
 } as const
