@@ -61,9 +61,9 @@ export const usePetsStore = defineStore('pets', () => {
   const _getPetById = async (id: number): Promise<Pet | false> => {
     try {
       const { data } = await axiosInstance.get<Pet>(API_URLS.PETS.BY_ID(id))
-      return { data }
+      return data
     } catch {
-      return { data: null }
+      return false
     }
   }
 
